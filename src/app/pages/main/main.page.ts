@@ -10,27 +10,31 @@ export class MainPage implements AfterViewInit {
 
     turtleService!: TurtleService;
 
-    codemirror: string = `export class Country {
-    static get(code: ISOCountryCode | ISOCountryCode3): CountryInfo
-    static get(code: string): CountryInfo | null {
-        if (code.match(/[A-Z]{3}/)) {
-            let foundCountry = countryInfo.find(item => item.code3 === code);
-            if (foundCountry) return foundCountry;
-        }
-        let foundCountry = countryInfo.find(item => item.code === code);
-        if (foundCountry) return foundCountry;
-        return null;
-    }
-    static getAll() {
-        return [...countryInfo];
-    }
-    static getAllFromRegion(region: WorldRegion) {
-        return countryInfo.filter(item => item.region.includes(region));
-    }
-    static getAllSovereign() {
-        return countryInfo.filter(item => item.sovereign);
-    }
-}`;
+    theme = 'darkplus';
+    codemirror: string = `import { Game } from './board.js';
+
+let figureData = {
+}
+let playerData = {
+    name: 'joker876',
+    color: 'blue',
+    opponents: [
+        {
+            name: 'foo',
+            color: 'red',
+        },
+        {
+            name: 'bar',
+            color: 'yellow',
+        },
+        {
+            name: 'baz',
+            color: 'green',
+        },
+    ]
+}
+let game = new Game(183486, 'M', {}, playerData);
+game.board.prependTo(document.body);`;
 
     constructor() { }
 

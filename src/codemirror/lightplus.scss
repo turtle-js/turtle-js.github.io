@@ -1,0 +1,169 @@
+/*
+  Name:       lightplus
+  Author:     joker876 (http://github.com/joker876)
+*/
+
+.cm-s-lightplus.CodeMirror {
+    background-color: #fff;
+    color: black;
+}
+
+.cm-s-lightplus .CodeMirror-gutters {
+    background: #fff;
+    color: #858585;
+    border: none;
+}
+
+.cm-s-lightplus .CodeMirror-guttermarker,
+.cm-s-lightplus .CodeMirror-guttermarker-subtle {
+    color: #666;
+}
+.cm-s-lightplus .CodeMirror-linenumber {
+    color: #237893;
+}
+.cm-s-lightplus .CodeMirror-activeline-gutter .CodeMirror-linenumber {
+    color: blue;
+}
+
+.cm-s-lightplus .CodeMirror-cursor {
+    border-left: 1px solid #00000080;
+}
+
+.cm-s-lightplus.cm-fat-cursor .CodeMirror-cursor {
+    background-color: #00000080 !important;
+}
+
+.cm-s-lightplus .cm-animate-fat-cursor {
+    background-color: #00000080 !important;
+}
+
+.cm-s-lightplus div.CodeMirror-selected {
+    background: #add6ff;
+    border-radius: 3px;
+}
+
+.cm-s-lightplus.CodeMirror-focused div.CodeMirror-selected {
+    background: #add6ff;
+    border-radius: 3px;
+}
+
+.cm-s-lightplus .CodeMirror-line::selection,
+.cm-s-lightplus .CodeMirror-line>span::selection,
+.cm-s-lightplus .CodeMirror-line>span>span::selection {
+    background: #add6ff;
+    border-radius: 3px;
+}
+
+.cm-s-lightplus .CodeMirror-line::-moz-selection,
+.cm-s-lightplus .CodeMirror-line>span::-moz-selection,
+.cm-s-lightplus .CodeMirror-line>span>span::-moz-selection {
+    background: #add6ff;
+    border-radius: 3px;
+}
+
+.cm-s-lightplus .CodeMirror-activeline-background {
+    border: 1px solid #0001;
+    background: #00000003;
+}
+
+.cm-s-lightplus .cm-keyword {
+    color: #af00db;
+}
+
+.cm-s-lightplus .cm-operator {
+    color: black;
+}
+
+.cm-s-lightplus .cm-variable-2 {
+    color: #795e26;
+}
+
+.cm-s-lightplus .cm-variable-3,
+.cm-s-lightplus .cm-type {
+    color: #267f99; //todo
+}
+
+.cm-s-lightplus .cm-builtin {
+    color: #FFCB6B; //todo
+}
+
+.cm-s-lightplus .cm-atom {
+    color: blue;
+}
+
+.cm-s-lightplus .cm-number {
+    color: #098658;
+}
+
+.cm-s-lightplus .cm-def {
+    color: #001080;
+}
+
+.cm-s-lightplus .cm-string {
+    color: #a31515;
+}
+
+.cm-s-lightplus .cm-string-2 {
+    color: #811f3f;
+}
+
+.cm-s-lightplus .cm-comment {
+    color: #008000;
+}
+
+.cm-s-lightplus .cm-variable {
+    color: #001080;
+}
+
+.cm-s-lightplus .cm-tag {
+    color: #FF5370; //todo
+}
+
+.cm-s-lightplus .cm-meta {
+    color: #FFCB6B; //todo
+}
+
+.cm-s-lightplus .cm-attribute {
+    color: #267f99;
+}
+
+.cm-s-lightplus .cm-property {
+    color: #267f99;
+}
+
+.cm-s-lightplus .cm-qualifier {
+    color: #DECB6B; //todo
+}
+
+.cm-s-lightplus .cm-variable-3,
+.cm-s-lightplus .cm-type {
+    color: #267f99;
+}
+
+
+.cm-s-lightplus .cm-error {
+    color: rgba(0, 0, 0, 1.0);
+    text-decoration: wavy;
+}
+
+
+.cm-s-lightplus .CodeMirror-matchingbracket {
+    color: #a74000 !important;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        border: 1px solid #0005;
+        background-color: #0001;
+    }
+}
+
+.cm-s-lightplus .CodeMirror-nonmatchingbracket {
+    color: #9b0202 !important;
+    background: #ff000040;
+}

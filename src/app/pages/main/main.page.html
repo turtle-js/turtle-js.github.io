@@ -3,11 +3,16 @@
         [(ngModel)]="codemirror"
         [options]="{
             mode: 'javascript',
-            lineNumbers: true,
-            theme: 'material',
+            theme: 'darkplus',
             indentUnit: 4,
             tabindex: 0,
-            autofocus: true
+            autofocus: true,
+            lineNumbers: true,
+            foldGutter: true,
+            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+            styleActiveLine: true,
+            matchBrackets: true,
+            autoCloseBrackets: true
         }"
     ></ngx-codemirror>
     <canvas #canvas class="turtle-canvas"></canvas>

@@ -1,0 +1,154 @@
+/*
+  Name:       darkplus
+  Author:     joker876 (http://github.com/joker876)
+*/
+
+.cm-s-darkplus.CodeMirror {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.cm-s-darkplus .CodeMirror-gutters {
+    background: #1e1e1e;
+    color: #858585;
+    border: none;
+}
+.cm-s-darkplus .CodeMirror-guttermarker,
+.cm-s-darkplus .CodeMirror-guttermarker-subtle,
+.cm-s-darkplus .CodeMirror-linenumber {
+    color: #fff8;
+}
+.cm-s-darkplus .CodeMirror-activeline {
+    .CodeMirror-guttermarker,
+    .CodeMirror-guttermarker-subtle,
+    .CodeMirror-linenumber {
+        color: #fffd;
+    }
+}
+
+.cm-s-darkplus .CodeMirror-cursor {
+    border-left: 1px solid #ffffff80;
+}
+
+.cm-s-darkplus.cm-fat-cursor .CodeMirror-cursor {
+    background-color: #ffffff80 !important;
+}
+
+.cm-s-darkplus .cm-animate-fat-cursor {
+    background-color: #ffffff80 !important;
+}
+
+.cm-s-darkplus div.CodeMirror-selected {
+    background: #0084ff40;
+    border-radius: 3px;
+}
+
+.cm-s-darkplus.CodeMirror-focused div.CodeMirror-selected {
+    background: #0084ff40;
+    border-radius: 3px;
+}
+
+.cm-s-darkplus .CodeMirror-line::selection,
+.cm-s-darkplus .CodeMirror-line>span::selection,
+.cm-s-darkplus .CodeMirror-line>span>span::selection {
+    background: #0084ff40;
+    border-radius: 3px;
+}
+
+.cm-s-darkplus .CodeMirror-line::-moz-selection,
+.cm-s-darkplus .CodeMirror-line>span::-moz-selection,
+.cm-s-darkplus .CodeMirror-line>span>span::-moz-selection {
+    background: #0084ff40;
+    border-radius: 3px;
+}
+
+.cm-s-darkplus .CodeMirror-activeline-background {
+    border: 1px solid #fff1;
+    background: #ffffff03;
+    transform: translateY(1px);
+}
+
+// import, let, export, if, while, etc.
+.cm-s-darkplus .cm-keyword {
+    color: #c586c0;
+}
+
+// =, +, -, *, etc.
+.cm-s-darkplus .cm-operator {
+    color: #d4d4d4;
+}
+
+//? don't know what this is
+.cm-s-darkplus .cm-variable-2 {
+    color: #dcdcaa;
+}
+//? this is something unknown to me and likely a typescript type
+.cm-s-darkplus .cm-variable-3,
+.cm-s-darkplus .cm-type {
+    color: #4ec990;
+}
+
+// false, true, null, undefined, etc.
+.cm-s-darkplus .cm-atom {
+    color: #569cd6;
+}
+
+//number
+.cm-s-darkplus .cm-number {
+    color: #b5cea8;
+}
+
+//definition of a new variable
+.cm-s-darkplus .cm-def {
+    color: #82aaff;
+}
+
+//string
+.cm-s-darkplus .cm-string {
+    color: #ce834a;
+}
+
+//regex
+.cm-s-darkplus .cm-string-2 {
+    color: #d16969;
+}
+
+//comment
+.cm-s-darkplus .cm-comment {
+    color: #6a9955;
+}
+
+//variable after it was defined
+.cm-s-darkplus .cm-variable {
+    color: #82aaff;
+}
+
+//property of an object
+.cm-s-darkplus .cm-property {
+    color: #9cdcfe;
+}
+
+
+.cm-s-darkplus .cm-error {
+    color: rgba(255, 255, 255, 1.0);
+    text-decoration: wavy;
+}
+
+
+.cm-s-darkplus .CodeMirror-matchingbracket {
+    color: #FFCB6B !important;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        border: 1px solid #fff5;
+    }
+}
+.cm-s-darkplus .CodeMirror-nonmatchingbracket {
+    color: #f14c4c !important;
+}

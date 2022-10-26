@@ -26,3 +26,5 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
     bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+let test = /g/
