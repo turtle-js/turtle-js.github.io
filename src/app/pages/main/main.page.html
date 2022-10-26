@@ -1,2 +1,14 @@
 <div>
+    <ngx-codemirror
+        [(ngModel)]="codemirror"
+        [options]="{
+            mode: 'javascript',
+            lineNumbers: true,
+            theme: 'material',
+            indentUnit: 4,
+            tabindex: 0,
+            autofocus: true
+        }"
+    ></ngx-codemirror>
+    <canvas #canvas class="turtle-canvas"></canvas>
 </div>
