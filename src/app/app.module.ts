@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainPage } from './pages/main/main.page';
 import { FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { ColorThemeButtonComponent } from './components/color-theme-button/color-theme-button.component';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
         HeaderComponent,
         FooterComponent,
         MainPage
+        ColorThemeButtonComponent
     ],
     imports: [
         BrowserModule,
@@ -26,5 +28,3 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
     bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-let test = /g/
