@@ -19,3 +19,18 @@
 .CodeMirror-matchingbracket::after {
     transform: translateY(calc(var(--editor-font-size) * 0.0765));
 }
+
+//! scrollbars
+.CodeMirror-scrollbar-filler {
+    background: transparent;
+}
+.CodeMirror-overlayscroll-horizontal div,
+.CodeMirror-overlayscroll-vertical div {
+    background: #737780;
+}
+.CodeMirror-overlayscroll-horizontal div {
+    bottom: 3px;
+}
+.CodeMirror-overlayscroll-vertical div {
+    right: 3px;
+}
