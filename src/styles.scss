@@ -1,2 +1,109 @@
 @import '~codemirror/lib/codemirror';
 @import './codemirror/editor.scss';
+
+//Roboto
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+//Google Icons
+:root {
+    --bg: #202124;
+    --acc: rgba(255, 255, 255, 0.12);
+    --acc2: #5f6368;
+    --hover: rgba(255, 255, 255, 0.04);
+    --focus: rgba(255, 255, 255, 0.1);
+    --active: rgba(255, 255, 255, 0.2);
+    --disabled: rgba(255, 255, 255, 0.3);
+
+    --text-e: rgba(255, 255, 255, 0.8); //emphasis
+    --text: rgba(255, 255, 255, 0.65); //standard
+    --text-s: rgba(255, 255, 255, 0.52); //secondary
+
+    --main-50: #E0F7FA;
+    --main-100: #B2EBF2;
+    --main-200: #80DEEA;
+    --main-300: #4DD0E1;
+    --main-400: #26C6DA;
+    --main-500: #00BCD4;
+    --main-600: #00ACC1;
+    --main-700: #0097A7;
+    --main-800: #00838F;
+    --main-900: #006064;
+
+    --main-500-rgb: 255, 87, 34;
+    
+    --error: rgb(248, 81, 73);
+    --error-rgb: 248, 81, 73;
+    --error-dark: rgb(214, 40, 31);
+    --error-dark-rgb: 214, 40, 31;
+    --success: rgb(44, 199, 30);
+    --success-rgb: 44, 199, 30;
+    --success-dark: rgb(36, 137, 25);
+    --success-dark-rgb: 36, 137, 25;
+    --warn: rgb(230, 192, 23);
+    --warn-rgb: 230, 192, 23;
+    --info: rgb(48, 79, 254);
+    --info-rgb: 48,
+    79,
+    254;
+
+    --timing-func: cubic-bezier(0.28, 0.15, 0.2, 1);
+
+    --header-height: 4rem;
+    --footer-height: 2rem;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+ul {
+    list-style: none;
+}
+
+b {
+    font-weight: bold;
+}
+
+i {
+    font-style: italic;
+}
+
+p {
+    margin: 0.4em 0;
+}
+
+a {
+    color: var(--main-300);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid var(--acc);
+    margin: 0.5em 0;
+}
+hr.wide {
+    margin: 1em 0;
+}
