@@ -4,12 +4,13 @@
 */
 
 .cm-s-darkplus.CodeMirror {
-    background-color: #1e1e1e;
+    --bg-color: #202124;
+    background-color: var(--bg-color);
     color: white;
 }
 
 .cm-s-darkplus .CodeMirror-gutters {
-    background: #1e1e1e;
+    background: var(--bg-color);
     color: #858585;
     border: none;
 }

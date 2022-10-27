@@ -9,6 +9,9 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/selection/active-line';
+//scroll
+import 'codemirror/addon/scroll/scrollpastend';
+import 'codemirror/addon/scroll/simplescrollbars';
 //folding
 import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/foldcode';
