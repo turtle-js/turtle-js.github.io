@@ -1,0 +1,9 @@
+.app-master-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    min-height: 100vh;
+}
+main {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}

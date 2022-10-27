@@ -1,19 +1,25 @@
-<div>
-    <ngx-codemirror
-        [(ngModel)]="codemirror"
-        [options]="{
-            mode: 'javascript',
-            theme: 'darkplus',
-            indentUnit: 4,
-            tabindex: 0,
-            autofocus: true,
-            lineNumbers: true,
-            foldGutter: true,
-            gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-            styleActiveLine: true,
-            matchBrackets: true,
-            autoCloseBrackets: true
-        }"
-    ></ngx-codemirror>
-    <canvas #canvas class="turtle-canvas"></canvas>
+<div class="panel-container">
+    <div class="panel1">
+        <ngx-codemirror
+            [(ngModel)]="codemirror"
+            [options]="{
+                mode: 'javascript',
+                theme: 'darkplus',
+                gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                scrollbarStyle: 'overlay',
+                indentUnit: 4,
+                tabindex: 0,
+                autofocus: true,
+                lineNumbers: true,
+                foldGutter: true,
+                styleActiveLine: true,
+                matchBrackets: true,
+                autoCloseBrackets: true,
+                scrollPastEnd: true
+            }"
+        ></ngx-codemirror>
+    </div>
+    <div class="panel2">
+        <canvas #canvas class="turtle-canvas"></canvas>
+    </div>
 </div>
