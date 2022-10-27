@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainPage } from './pages/main/main.page';
 import { FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { MatIconComponent } from './components/mat-icon/mat-icon.component';
 import { ColorThemeButtonComponent } from './components/color-theme-button/color-theme-button.component';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ColorThemeButtonComponent } from './components/color-theme-button/color
         AppComponent,
         HeaderComponent,
         FooterComponent,
-        MainPage
+        MainPage,
+        MatIconComponent,
         ColorThemeButtonComponent
     ],
     imports: [
