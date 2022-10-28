@@ -11,6 +11,7 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { MatIconComponent } from './components/mat-icon/mat-icon.component';
 import { ColorThemeButtonComponent } from './components/color-theme-button/color-theme-button.component';
 import { CodemirrorComponent } from './components/codemirror/codemirror.component';
+import { TurtleCanvasComponent } from './components/turtle-canvas/turtle-canvas.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { CodemirrorComponent } from './components/codemirror/codemirror.componen
         MainPage,
         MatIconComponent,
         ColorThemeButtonComponent,
-        CodemirrorComponent
+        CodemirrorComponent,
+        TurtleCanvasComponent
     ],
     imports: [
         BrowserModule,

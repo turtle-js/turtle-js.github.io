@@ -67,4 +67,7 @@ export class TurtleService {
         obj['color'] = this.color.bind(this);
         obj['width'] = this.width.bind(this);
     }
+    redrawCanvas() {
+        this.turtle.draw();
+    }
 }

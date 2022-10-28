@@ -5,8 +5,9 @@
     >
     <ngx-codemirror
         #codemirror
-        [(ngModel)]="value"
+        [ngModel]="value"
         [options]="options"
         [autoFocus]="autoFocus"
+        (ngModelChange)="valueChange.emit($event)"
     ></ngx-codemirror>
 </div>
