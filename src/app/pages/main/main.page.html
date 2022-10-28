@@ -1,7 +1,7 @@
 <div class="panel-container">
     <div class="panel1">
-        <ngx-codemirror
-            [(ngModel)]="codemirror"
+        <tjs-codemirror
+            [(value)]="codemirror"
             [options]="{
                 mode: 'javascript',
                 theme: 'darkplus',
@@ -17,7 +17,8 @@
                 autoCloseBrackets: true,
                 scrollPastEnd: true
             }"
-        ></ngx-codemirror>
+            [autoFocus]="true"
+        ></tjs-codemirror>
     </div>
     <div class="panel2">
         <canvas #canvas class="turtle-canvas"></canvas>

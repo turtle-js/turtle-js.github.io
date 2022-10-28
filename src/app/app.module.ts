@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { MatIconComponent } from './components/mat-icon/mat-icon.component';
 import { ColorThemeButtonComponent } from './components/color-theme-button/color-theme-button.component';
+import { CodemirrorComponent } from './components/codemirror/codemirror.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { ColorThemeButtonComponent } from './components/color-theme-button/color
         FooterComponent,
         MainPage,
         MatIconComponent,
-        ColorThemeButtonComponent
+        ColorThemeButtonComponent,
+        CodemirrorComponent
     ],
     imports: [
         BrowserModule,
