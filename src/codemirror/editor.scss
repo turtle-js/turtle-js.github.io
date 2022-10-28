@@ -24,9 +24,13 @@
 .CodeMirror-scrollbar-filler {
     background: transparent;
 }
-.CodeMirror-overlayscroll-horizontal div,
-.CodeMirror-overlayscroll-vertical div {
-    background: #737780;
+.CodeMirror-overlayscroll-horizontal,
+.CodeMirror-overlayscroll-vertical {
+    cursor: pointer;
+
+    div {
+        background: #737780;
+    }
 }
 .CodeMirror-overlayscroll-horizontal div {
     bottom: 3px;
