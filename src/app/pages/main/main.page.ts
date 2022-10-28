@@ -24,8 +24,22 @@ forward(100)`;
             }
         );
         this.turtleService.expose(window);
+
+        this._runCode();
+    }
     onCanvasResize() {
         this.turtleService.redrawCanvas();
     }
+    onRunClick() {
+        this._runCode();
+    }
+    private _runCode() {
+        this.turtleService.reset();
+        try {
+            eval(this.codemirror);
+        } catch (err: any) {
+            const error = err as Error;
+            console.log(error.toString());
+        }
     }
 }
