@@ -1,6 +1,7 @@
 <div
     class="codemirror-container"
     #host
+    (window:resize)="onResize()"
     >
     <ngx-codemirror
         #codemirror

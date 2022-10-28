@@ -18,4 +18,17 @@ export class CodemirrorComponent implements AfterViewInit {
     @ViewChild('host') hostEl!: ElementRef;
     @ViewChild(NgxCodemirrorComponent) codemirrorEl!: NgxCodemirrorComponent;
 
+    onResize(): void {
+        const { width, height } = this._getHostElRect();
+        setTimeout(() => {
+            this.codemirrorEl.codeMirror!.setSize(width, height);
+        }, 0);
+    }
+    private _getHostElRect(): DOMRect {
+        return (this.hostEl.nativeElement as HTMLElement).getBoundingClientRect();
+    }
+
+    ngAfterViewInit(): void {
+        this.onResize();
+    }
 }
