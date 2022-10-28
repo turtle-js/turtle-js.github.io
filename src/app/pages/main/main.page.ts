@@ -14,9 +14,17 @@ export class MainPage implements AfterViewInit {
     theme = 'darkplus';
     codemirror: string = `
 forward(100)`;
+    private _wasViewInit = false;
     ngAfterViewInit(): void {
+        this._wasViewInit = true;
         this.turtleService = new TurtleService(
-            this.canvas.canvasEl.nativeElement.getContext('2d'),
+            this
+                .canvas
+                .canvasEl
+                .nativeElement
+                .getContext('2d', {
+                    willReadFrequently: true,
+                }),
             {
                 defaultColor: 'white',
                 autoDraw: true,
@@ -25,16 +33,17 @@ forward(100)`;
         );
         this.turtleService.expose(window);
 
-        this._runCode();
+        this._runCode(true);
     }
     onCanvasResize() {
+        if (!this._wasViewInit) return;
         this.turtleService.redrawCanvas();
     }
     onRunClick() {
         this._runCode();
     }
-    private _runCode() {
-        this.turtleService.reset();
+    private _runCode(firstRun?: true) {
+        if (!firstRun) this.turtleService.reset();
         try {
             eval(this.codemirror);
         } catch (err: any) {
