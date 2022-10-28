@@ -1,47 +1,45 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { TurtleService } from './../../services/turtle/turtle.service';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { TurtleService } from 'src/app/services/turtle/turtle.service';
+import { TurtleCanvasComponent } from 'src/app/components/turtle-canvas/turtle-canvas.component';
 
 @Component({
     templateUrl: './main.page.html',
     styleUrls: ['./main.page.scss']
 })
 export class MainPage implements AfterViewInit {
-    @ViewChild('canvas') canvas!: ElementRef;
+    @ViewChild(TurtleCanvasComponent) canvas!: TurtleCanvasComponent;
 
     turtleService!: TurtleService;
 
     theme = 'darkplus';
-    codemirror: string = `import { Game } from './board.js';
-
-let figureData = {
-}
-let playerData = {
-    name: 'joker876',
-    color: 'blue',
-    opponents: [
-        {
-            name: 'foo',
-            color: 'red',
-        },
-        {
-            name: 'bar',
-            color: 'yellow',
-        },
-        {
-            name: 'baz',
-            color: 'green',
-        },
-    ]
-}
-let game = new Game(183486, 'M', {}, playerData);
-game.board.prependTo(document.body);`;
-
-    constructor() { }
-
+    codemirror: string = `
+forward(100)`;
     ngAfterViewInit(): void {
-        this.turtleService = new TurtleService((this.canvas.nativeElement).getContext('2d'), {
-            defaultColor: 'black',
-        });
+        this.turtleService = new TurtleService(
+            this.canvas.canvasEl.nativeElement.getContext('2d'),
+            {
+                defaultColor: 'white',
+                autoDraw: true,
+                turtleSizeModifier: 3,
+            }
+        );
         this.turtleService.expose(window);
+
+        this._runCode();
+    }
+    onCanvasResize() {
+        this.turtleService.redrawCanvas();
+    }
+    onRunClick() {
+        this._runCode();
+    }
+    private _runCode() {
+        this.turtleService.reset();
+        try {
+            eval(this.codemirror);
+        } catch (err: any) {
+            const error = err as Error;
+            console.log(error.toString());
+        }
     }
 }
