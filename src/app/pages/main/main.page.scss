@@ -9,6 +9,7 @@ ng-component,
 .panel-container {
     display: flex;
     flex-direction: row;
+    justify-content: stretch;
 }
 
 $panel2-width: min(600px, 40%);
@@ -17,10 +18,16 @@ $panel2-width: min(600px, 40%);
     flex-direction: column;
     justify-content: stretch;
 }
+.panel1 {
+    flex-grow: 1;
+}
+.panel2 {
+    width: $panel2-width;
+}
+
 tjs-codemirror {
     flex-grow: 1;
 }
-
 tjs-turtle-canvas {
     height: $content-height;
 }
