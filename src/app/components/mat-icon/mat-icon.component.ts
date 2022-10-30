@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'tjs-mat-icon',
+  selector: 'mat-icon',
   templateUrl: './mat-icon.component.html'
 })
 export class MatIconComponent {}
