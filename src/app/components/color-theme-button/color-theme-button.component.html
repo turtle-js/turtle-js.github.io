@@ -1,1 +1,11 @@
-<p>color-theme-button works!</p>
+<button class="theme-button" (click)="changeTheme()" [class]="themeClassForComponent">
+    <div class="icon-host system">
+        <mat-icon>computer</mat-icon>
+    </div>
+    <div class="icon-host dark">
+        <mat-icon>dark_mode</mat-icon>
+    </div>
+    <div class="icon-host light">
+        <mat-icon>light_mode</mat-icon>
+    </div>
+</button>
