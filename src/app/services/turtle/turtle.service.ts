@@ -34,13 +34,13 @@ drawShape(12, steps)
         return this.turtle.forward(-steps);
     }
     right(degrees: number): Turtle {
-        return this.turtle.right(-degrees);
+        return this.turtle.right(degrees);
     }
     left(degrees: number): Turtle {
-        return this.turtle.left(-degrees);
+        return this.turtle.left(degrees);
     }
     angle(degrees: number): Turtle {
-        return this.turtle.setAngle(-degrees);
+        return this.turtle.setAngle(degrees);
     }
     show(): Turtle {
         return this.turtle.show();
