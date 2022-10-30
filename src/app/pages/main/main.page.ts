@@ -12,8 +12,7 @@ export class MainPage implements AfterViewInit {
     turtleService!: TurtleService;
 
     theme = 'darkplus';
-    codemirror: string = `
-forward(100)`;
+    codemirror: string = TurtleService.defaultCode;
     private _wasViewInit = false;
     ngAfterViewInit(): void {
         this._wasViewInit = true;

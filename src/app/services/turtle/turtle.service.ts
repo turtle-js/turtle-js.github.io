@@ -1,8 +1,26 @@
 import { Turtle, TurtleOptions, ColorResolvable } from 'simple-turtle';
 
 export class TurtleService {
-    readonly turtle!: Turtle;
+    static readonly defaultCode: string = `
+function drawShape(sides, steps) {
+    const angle = 360 / sides;
+    for (let i = 0; i < sides; i++) {
+        forward(steps)
+        right(angle)
+    }
+}
 
+const steps = 50
+drawShape(3, steps)
+drawShape(4, steps)
+drawShape(5, steps)
+drawShape(6, steps)
+drawShape(8, steps)
+drawShape(10, steps)
+drawShape(12, steps)
+`; 
+
+    readonly turtle!: Turtle;
     constructor(
         ctx: CanvasRenderingContext2D,
         turtleOptions?: TurtleOptions
