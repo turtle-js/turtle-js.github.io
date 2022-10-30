@@ -4,15 +4,17 @@
     padding-right: 2%;
     display: flex;
     justify-content: space-between;
-    // background: var(--focus);
     border-bottom: 1px solid var(--acc2);
 }
 .logo-container {
     display: flex;
     align-items: center;
-    // gap: 1rem;
 
     img {
         height: 75%;
     }
+}
+.color-theme {
+    display: flex;
+    align-items: center;
 }
