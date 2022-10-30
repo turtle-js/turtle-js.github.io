@@ -44,8 +44,8 @@ export class ColorThemeButtonComponent implements OnInit {
         }
         return cls;
     }
-    public get themeClassForComponent(): string {
-        return 'icon-' + this._theme;
+    public get getTheme(): ColorThemeOption {
+        return this._theme;
     }
 
     ngOnInit(): void {

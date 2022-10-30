@@ -1,4 +1,9 @@
-<button class="theme-button" (click)="changeTheme()" [class]="themeClassForComponent">
+<button
+    class="theme-button"
+    (click)="changeTheme()"
+    [class]="'icon-' + getTheme"
+    [title]="'Change color theme (now: ' + getTheme + ')'"
+>
     <div class="icon-host system">
         <mat-icon>computer</mat-icon>
     </div>
