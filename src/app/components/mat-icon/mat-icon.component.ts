@@ -1,15 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'tjs-mat-icon',
-  templateUrl: './mat-icon.component.html',
-  styleUrls: ['./mat-icon.component.scss']
+  templateUrl: './mat-icon.component.html'
 })
-export class MatIconComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class MatIconComponent {}
