@@ -1,7 +1,22 @@
 /*
-  Name:       darkplus
-  Author:     joker876 (http://github.com/joker876)
+ * Name:       darkplus
+ * Author: joker876 (https://github.com/joker876)
 */
+//general
+$white-half-opaque: #ffffff80;
+$selection: #0084ff40;
+//token colors
+$purple: #c586c0;
+$almost-white: #d4d4d4;
+$aqua: #98d7f8;
+$pistachio: #4ec990;
+$lightblue: #569cd6;
+$lightgreen: #b5cea8;
+$blue: #82aaff;
+$orange: #ce834a;
+$lightred: #d16969;
+$green: #6a9955;
+$yellow: #dcdcaa;
 
 .cm-s-darkplus.CodeMirror {
     --bg-color: #202124;
@@ -14,12 +29,15 @@
     color: #858585;
     border: none;
 }
+
 .cm-s-darkplus .CodeMirror-guttermarker,
 .cm-s-darkplus .CodeMirror-guttermarker-subtle,
 .cm-s-darkplus .CodeMirror-linenumber {
     color: #fff8;
 }
+
 .cm-s-darkplus .CodeMirror-activeline {
+
     .CodeMirror-guttermarker,
     .CodeMirror-guttermarker-subtle,
     .CodeMirror-linenumber {
@@ -28,38 +46,38 @@
 }
 
 .cm-s-darkplus .CodeMirror-cursor {
-    border-left: 1px solid #ffffff80;
+    border-left: 1px solid $white-half-opaque;
 }
 
 .cm-s-darkplus.cm-fat-cursor .CodeMirror-cursor {
-    background-color: #ffffff80 !important;
+    background-color: $white-half-opaque !important;
 }
 
 .cm-s-darkplus .cm-animate-fat-cursor {
-    background-color: #ffffff80 !important;
+    background-color: $white-half-opaque !important;
 }
 
 .cm-s-darkplus div.CodeMirror-selected {
-    background: #0084ff40;
+    background: $selection;
     border-radius: 3px;
 }
 
 .cm-s-darkplus.CodeMirror-focused div.CodeMirror-selected {
-    background: #0084ff40;
+    background: $selection;
     border-radius: 3px;
 }
 
 .cm-s-darkplus .CodeMirror-line::selection,
 .cm-s-darkplus .CodeMirror-line>span::selection,
 .cm-s-darkplus .CodeMirror-line>span>span::selection {
-    background: #0084ff40;
+    background: $selection;
     border-radius: 3px;
 }
 
 .cm-s-darkplus .CodeMirror-line::-moz-selection,
 .cm-s-darkplus .CodeMirror-line>span::-moz-selection,
 .cm-s-darkplus .CodeMirror-line>span>span::-moz-selection {
-    background: #0084ff40;
+    background: $selection;
     border-radius: 3px;
 }
 
@@ -71,62 +89,63 @@
 
 // import, let, export, if, while, etc.
 .cm-s-darkplus .cm-keyword {
-    color: #c586c0;
+    color: $purple;
 }
 
 // =, +, -, *, etc.
 .cm-s-darkplus .cm-operator {
-    color: #d4d4d4;
+    color: $almost-white;
 }
 
-//? don't know what this is
+// variable inside a function
 .cm-s-darkplus .cm-variable-2 {
-    color: #dcdcaa;
+    color: $blue;
 }
+
 //? this is something unknown to me and likely a typescript type
 .cm-s-darkplus .cm-variable-3,
 .cm-s-darkplus .cm-type {
-    color: #4ec990;
+    color: $pistachio;
 }
 
 // false, true, null, undefined, etc.
 .cm-s-darkplus .cm-atom {
-    color: #569cd6;
+    color: $lightblue;
 }
 
 //number
 .cm-s-darkplus .cm-number {
-    color: #b5cea8;
+    color: $lightgreen;
 }
 
 //definition of a new variable
 .cm-s-darkplus .cm-def {
-    color: #82aaff;
+    color: $blue;
 }
 
 //string
 .cm-s-darkplus .cm-string {
-    color: #ce834a;
+    color: $orange;
 }
 
 //regex
 .cm-s-darkplus .cm-string-2 {
-    color: #d16969;
+    color: $lightred;
 }
 
 //comment
 .cm-s-darkplus .cm-comment {
-    color: #6a9955;
+    color: $green;
 }
 
 //variable after it was defined
 .cm-s-darkplus .cm-variable {
-    color: #82aaff;
+    color: $blue;
 }
 
 //property of an object
 .cm-s-darkplus .cm-property {
-    color: #9cdcfe;
+    color: $aqua;
 }
 
 
@@ -150,6 +169,7 @@
         border: 1px solid #fff5;
     }
 }
+
 .cm-s-darkplus .CodeMirror-nonmatchingbracket {
     color: #f14c4c !important;
 }
