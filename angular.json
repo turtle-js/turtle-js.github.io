@@ -30,7 +30,15 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+                "codemirror"
+            ],
+            "stylePreprocessorOptions": {
+                "includePaths": [
+                    "./node_modules"
+                ]
+            }
           },
           "configurations": {
             "production": {

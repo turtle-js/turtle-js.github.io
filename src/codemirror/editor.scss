@@ -5,9 +5,9 @@
 @import './fold-gutter';
 @import './darkplus';
 @import './lightplus';
-@import '~codemirror/addon/dialog/dialog';
-@import '~codemirror/addon/search/matchesonscrollbar';
-@import '~codemirror/addon/scroll/simplescrollbars';
+@import 'codemirror/addon/dialog/dialog';
+@import 'codemirror/addon/search/matchesonscrollbar';
+@import 'codemirror/addon/scroll/simplescrollbars';
 
 .CodeMirror {
     --editor-font-size: 13px;
