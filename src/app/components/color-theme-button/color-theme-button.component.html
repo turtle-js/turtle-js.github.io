@@ -1,8 +1,8 @@
 <button
     class="theme-button"
-    (click)="changeTheme()"
-    [class]="'icon-' + getTheme"
-    [title]="'Change color theme (now: ' + getTheme + ')'"
+    (click)="nextTheme()"
+    [class]="'icon-' + (theme | async)"
+    [title]="'Change color theme (now: ' + (theme | async) + ')'"
 >
     <div class="icon-host system">
         <mat-icon>computer</mat-icon>
