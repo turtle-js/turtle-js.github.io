@@ -36,11 +36,17 @@ tjs-turtle-canvas {
 }
 
 //!panel 1
-.button-container {
+.panel-toolbar {
+    display: flex;
+    justify-content: stretch;
+    border-bottom: 1px solid var(--acc2);
     padding: 0.6rem;
+    align-items: center;
+}
+.button-container {
+    flex-grow: 1;
     display: flex;
     gap: 0.6rem;
-    border-bottom: 1px solid var(--acc2);
 
     button {
         background: transparent;

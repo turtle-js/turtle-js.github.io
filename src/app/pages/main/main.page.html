@@ -1,14 +1,20 @@
 <div class="panel-container">
     <div class="panel1">
-        <div class="button-container">
-            <button (click)="onRunClick()" class="run-button">
-                <mat-icon>play_arrow</mat-icon>
-                <span>Run</span>
-            </button>
-            <button (click)="onDownloadClick()" class="download-button">
-                <mat-icon>file_download</mat-icon>
-                <span>Download</span>
-            </button>
+        <div class="panel-toolbar">
+            <div class="button-container">
+                <button
+                    (click)="onRunClick()"
+                    class="run-button"
+                    [disabled]="isRunning"
+                >
+                    <mat-icon>{{ isRunning ? 'more_horiz' : 'play_arrow' }}</mat-icon>
+                    <span>Run</span>
+                </button>
+                <button (click)="onDownloadClick()" class="download-button">
+                    <mat-icon>file_download</mat-icon>
+                    <span>Download</span>
+                </button>
+            </div>
         </div>
         <tjs-codemirror
             [value]="codemirror"

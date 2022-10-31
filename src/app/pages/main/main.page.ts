@@ -39,21 +39,29 @@ export class MainPage implements AfterViewInit {
         );
         this.turtleService.expose(window);
 
-        this._runCode();
+        this._runCodeTimeout();
         this._wasViewInit = true;
-    } 
+    }
+    private _runCodeTimeout() {
+        this.turtleService.reset();
+        this.isRunning = true;
+        //this is for multithreading purposes
+        setTimeout(() => {
+            this._runCode();
+            this.isRunning = false;
+        }, 0);
+    }
     private _runCode() {
-        if (this._wasViewInit) this.turtleService.reset();
         try {
             eval(this.codemirror);
         } catch (err: any) {
             const error = err as Error;
-            console.log(error.toString());
+            console.error(error.toString());
         }
     }
     onCanvasResize = debounce(() => {
         if (!this._wasViewInit) return;
-        this.turtleService.redrawCanvas();
+        this.turtleService.reset();
         this._runCode();
     }, 250);
     private _saveCodemirrorToLS = debounce(() => {
@@ -64,7 +72,8 @@ export class MainPage implements AfterViewInit {
         this._saveCodemirrorToLS();
     }
     onRunClick() {
-        this._runCode();
+        if (this.isRunning) return;
+        this._runCodeTimeout();
     }
     onDownloadClick() {
         this.downloadService.download(this.codemirror, 'turtle code.js');
