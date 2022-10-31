@@ -24,6 +24,19 @@ export class LocalStorageService {
         if (data.match(/^(?:true|false)$/)) return data == 'true';
         return data;
     }
+    
+    /**
+     * Loads some data from user's local storage.
+     * @param item the name of the key to load
+     * @returns the data saved in the local storage.
+     * * If no data is found, `null` is returned.
+     * * If any data is found, it is returned as `string`.
+     */
+    public loadString(item: string): null | string {
+        let data = localStorage.getItem(item);
+        if (!data || data == 'null') return null;
+        return data;
+    }
 
     /**
      * Saves some data to user's local storage.
