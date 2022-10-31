@@ -5,13 +5,13 @@
                 <mat-icon>play_arrow</mat-icon>
                 <span>Run</span>
             </button>
-            <button (click)="null" class="download-button">
+            <button (click)="onDownloadClick()" class="download-button">
                 <mat-icon>file_download</mat-icon>
-                <span>Save</span>
+                <span>Download</span>
             </button>
         </div>
         <tjs-codemirror
-            [(value)]="codemirror"
+            [value]="codemirror"
             [options]="{
                 mode: 'javascript',
                 theme: 'darkplus',
@@ -28,6 +28,7 @@
                 scrollPastEnd: true
             }"
             [autoFocus]="true"
+            (valueChange)="onCodemirrorChange($event)"
         ></tjs-codemirror>
     </div>
     <div class="panel2">

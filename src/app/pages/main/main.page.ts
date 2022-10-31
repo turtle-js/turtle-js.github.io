@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { TurtleService } from 'src/app/services/turtle/turtle.service';
 import { TurtleCanvasComponent } from 'src/app/components/turtle-canvas/turtle-canvas.component';
+import { DownloadService } from './../../services/download/download.service';
+import { LocalStorageService } from './../../services/local-storage/local-storage.service';
 
 @Component({
     templateUrl: './main.page.html',
@@ -12,7 +14,13 @@ export class MainPage implements AfterViewInit {
     turtleService!: TurtleService;
 
     theme = 'darkplus';
-    codemirror: string = TurtleService.defaultCode;
+    codemirror: string = TurtleService.getCodeToLoad();
+
+    constructor(
+        private downloadService: DownloadService,
+        private lss: LocalStorageService,
+    ) {}
+
     private _wasViewInit = false;
     ngAfterViewInit(): void {
         this.turtleService = new TurtleService(
@@ -34,13 +42,6 @@ export class MainPage implements AfterViewInit {
         this._runCode();
         this._wasViewInit = true;
     }
-    onCanvasResize = debounce(() => {
-        if (!this._wasViewInit) return;
-        this.turtleService.redrawCanvas();
-        this._runCode();
-    }, 250);
-    onRunClick() {
-        this._runCode();
     }
     private _runCode() {
         if (this._wasViewInit) this.turtleService.reset();
@@ -51,7 +52,26 @@ export class MainPage implements AfterViewInit {
             console.log(error.toString());
         }
     }
-    
+    onCanvasResize = debounce(() => {
+        if (!this._wasViewInit) return;
+        this.turtleService.redrawCanvas();
+        this._runCode();
+    }, 250);
+    private _saveCodemirrorToLS = debounce(() => {
+        console.log('saved');
+
+        this.lss.save('turtle-codemirror', this.codemirror);
+    }, 500);
+    onCodemirrorChange(value: string) {
+        this.codemirror = value;
+        this._saveCodemirrorToLS();
+    }
+    onRunClick() {
+        this._runCode();
+    }
+    onDownloadClick() {
+        this.downloadService.download(this.codemirror, 'turtle code.js');
+    }
 }
 
 function debounce(func: (e?: Event) => unknown, delay: number = 100) {

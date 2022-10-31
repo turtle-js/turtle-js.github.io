@@ -1,7 +1,8 @@
 import { Turtle, TurtleOptions, ColorResolvable } from 'simple-turtle';
+import { LocalStorageService } from './../local-storage/local-storage.service';
 
 export class TurtleService {
-    static readonly defaultCode: string = `
+    private static readonly _defaultCode: string = `
 function drawShape(sides, steps) {
     const angle = 360 / sides;
     for (let i = 0; i < sides; i++) {
@@ -19,6 +20,13 @@ drawShape(8, steps)
 drawShape(10, steps)
 drawShape(12, steps)
 `; 
+
+    //LS = LocalStorage
+    static getCodeToLoad(): string {
+        const LS = new LocalStorageService();
+        const codeFromLS = LS.loadString('turtle-codemirror');
+        return codeFromLS || TurtleService._defaultCode;
+    }
 
     readonly turtle!: Turtle;
     constructor(
