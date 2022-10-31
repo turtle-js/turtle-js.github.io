@@ -114,3 +114,10 @@ hr {
 hr.wide {
     margin: 1em 0;
 }
+
+.disabled,
+[disabled] {
+    opacity: 30%;
+    pointer-events: none;
+    transition: opacity 0.2s var(--timing-func);
+}
