@@ -76,7 +76,15 @@ export class MainPage implements AfterViewInit {
         this._runCodeTimeout();
     }
     onDownloadClick() {
-        this.downloadService.download(this.codemirror, 'turtle code.js');
+        this.downloadService.download(this._getCodeWithWatermark(), 'turtle code.js');
+    }
+    private _getCodeWithWatermark() {
+        return `/*
+ * Edited using TurtleJS
+ * https://turtle-js.github.io
+ */
+
+${this.codemirror.trimStart()}`;
     }
 }
 
