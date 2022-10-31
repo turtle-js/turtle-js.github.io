@@ -20,7 +20,7 @@
             [value]="codemirror"
             [options]="{
                 mode: 'javascript',
-                theme: 'darkplus',
+                theme: (theme | async) + 'plus',
                 gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
                 scrollbarStyle: 'overlay',
                 indentUnit: 4,

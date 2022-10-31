@@ -3,6 +3,7 @@ import { TurtleService } from 'src/app/services/turtle/turtle.service';
 import { TurtleCanvasComponent } from 'src/app/components/turtle-canvas/turtle-canvas.component';
 import { DownloadService } from './../../services/download/download.service';
 import { LocalStorageService } from './../../services/local-storage/local-storage.service';
+import { ThemeService } from './../../services/theme/theme.service';
 
 @Component({
     templateUrl: './main.page.html',
@@ -13,12 +14,13 @@ export class MainPage implements AfterViewInit {
 
     turtleService!: TurtleService;
 
-    theme = 'darkplus';
+    theme = this.themeService.simpleTheme;
     codemirror: string = TurtleService.getCodeToLoad();
 
     constructor(
         private downloadService: DownloadService,
         private lss: LocalStorageService,
+        private themeService: ThemeService,
     ) {}
 
     private _wasViewInit = false;

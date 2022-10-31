@@ -12,6 +12,8 @@ export class ThemeService {
     private _theme!: ColorThemeOption;
     private _themeSubject = new BehaviorSubject<ColorThemeOption>(this._theme);
     public theme = this._themeSubject.asObservable();
+    private _simpleThemeSubject = new BehaviorSubject<ColorTheme>(this._themeSimple);
+    public simpleTheme = this._simpleThemeSubject.asObservable();
 
     private _bodyClass?: string;
 
@@ -38,7 +40,7 @@ export class ThemeService {
         'dark',
         'light',
     ];
-    static themeToClass(theme: ColorThemeOption): ColorTheme {
+    static themeToSimple(theme: ColorThemeOption): ColorTheme {
         switch (theme) {
             case 'system':
                 if (!window.matchMedia || window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -48,12 +50,12 @@ export class ThemeService {
         }
         return theme;
     }
-    private get _themeClass(): ColorTheme {
-        return ThemeService.themeToClass(this._theme);
+    private get _themeSimple(): ColorTheme {
+        return ThemeService.themeToSimple(this._theme);
     }
     private _setBodyClass() {
         //get class
-        const classToSet = 'theme-' + this._themeClass;
+        const classToSet = 'theme-' + this._themeSimple;
         //find out which class to (not) remove and update <body>
         const allClasses = ThemeService.allThemes.map(cls => 'theme-' + cls);
         const clsIndex = allClasses.indexOf(classToSet);
@@ -84,6 +86,7 @@ export class ThemeService {
     }
     private _onChange() {
         this._themeSubject.next(this._theme);
+        this._simpleThemeSubject.next(this._themeSimple);
         this.localStorageService.save('theme', this._theme);
     }
 }
