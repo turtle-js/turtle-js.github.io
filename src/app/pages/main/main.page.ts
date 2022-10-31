@@ -18,6 +18,10 @@ export class MainPage implements AfterViewInit {
     codemirror: string = TurtleService.getCodeToLoad();
 
     isRunning: boolean = false;
+    
+    savingText: string = '';
+    private _savingTimeout?: NodeJS.Timeout;
+
     constructor(
         private downloadService: DownloadService,
         private lss: LocalStorageService,
@@ -69,9 +73,15 @@ export class MainPage implements AfterViewInit {
     }, 250);
     private _saveCodemirrorToLS = debounce(() => {
         this.lss.save('turtle-codemirror', this.codemirror);
+        this.savingText = 'Saved!';
+        this._savingTimeout = setTimeout(() => {
+            this.savingText = '';
+        }, 3000);
     }, 500);
     onCodemirrorChange(value: string) {
         this.codemirror = value;
+        this.savingText = 'Saving...';
+        clearTimeout(this._savingTimeout);
         this._saveCodemirrorToLS();
     }
     onRunClick() {
