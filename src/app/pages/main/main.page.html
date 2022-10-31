@@ -1,6 +1,15 @@
 <div class="panel-container">
     <div class="panel1">
-        <button (click)="onRunClick()">Run</button>
+        <div class="button-container">
+            <button (click)="onRunClick()" class="run-button">
+                <mat-icon>play_arrow</mat-icon>
+                <span>Run</span>
+            </button>
+            <button (click)="null" class="download-button">
+                <mat-icon>file_download</mat-icon>
+                <span>Save</span>
+            </button>
+        </div>
         <tjs-codemirror
             [(value)]="codemirror"
             [options]="{
@@ -22,6 +31,6 @@
         ></tjs-codemirror>
     </div>
     <div class="panel2">
-        <tjs-turtle-canvas (resize)="onCanvasResize()"></tjs-turtle-canvas>
+        <tjs-turtle-canvas (body:resize)="onCanvasResize()"></tjs-turtle-canvas>
     </div>
 </div>
