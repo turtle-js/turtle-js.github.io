@@ -4,7 +4,7 @@ import { LocalStorageService } from './../local-storage/local-storage.service';
 export class TurtleService {
     private static readonly _defaultCode: string = `
 function drawShape(sides, steps) {
-    const angle = 360 / sides;
+    const angle = 360 / sides
     for (let i = 0; i < sides; i++) {
         forward(steps)
         right(angle)
