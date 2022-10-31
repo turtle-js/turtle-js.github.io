@@ -17,6 +17,7 @@ export class MainPage implements AfterViewInit {
     theme = this.themeService.simpleTheme;
     codemirror: string = TurtleService.getCodeToLoad();
 
+    isRunning: boolean = false;
     constructor(
         private downloadService: DownloadService,
         private lss: LocalStorageService,
