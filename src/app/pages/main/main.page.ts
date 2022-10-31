@@ -41,8 +41,7 @@ export class MainPage implements AfterViewInit {
 
         this._runCode();
         this._wasViewInit = true;
-    }
-    }
+    } 
     private _runCode() {
         if (this._wasViewInit) this.turtleService.reset();
         try {
@@ -58,8 +57,6 @@ export class MainPage implements AfterViewInit {
         this._runCode();
     }, 250);
     private _saveCodemirrorToLS = debounce(() => {
-        console.log('saved');
-
         this.lss.save('turtle-codemirror', this.codemirror);
     }, 500);
     onCodemirrorChange(value: string) {
