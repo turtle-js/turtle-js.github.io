@@ -4,6 +4,7 @@ import { TurtleCanvasComponent } from 'src/app/components/turtle-canvas/turtle-c
 import { DownloadService } from './../../services/download/download.service';
 import { LocalStorageService } from './../../services/local-storage/local-storage.service';
 import { ThemeService } from './../../services/theme/theme.service';
+import * as CodeMirror from 'codemirror';
 
 @Component({
     templateUrl: './main.page.html',
@@ -17,10 +18,45 @@ export class MainPage implements AfterViewInit {
     theme = this.themeService.simpleTheme;
     codemirror: string = TurtleService.getCodeToLoad();
 
-    isRunning: boolean = false;
-    
+    isRunning: boolean = true;
+
     savingText: string = '';
     private _savingTimeout?: NodeJS.Timeout;
+
+    readonly extraKeysMap = {
+        'Tab': (cm: any) => {
+            const spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+            cm.replaceSelection(spaces);
+        },
+        'Ctrl-S': (cm: any) => {
+            this.onDownloadClick();
+        },
+        'Ctrl-Alt-R': (cm: any) => {
+            this._runCodeTimeout();
+        },
+        'Alt-B': (cm: any) => {
+            const line = cm.getLine(cm.getCursor().line);
+            cm.replaceSelection('\n' + line);
+        },
+        'Alt-Down': (cm: any) => {
+            const cursor = cm.getCursor();
+            const lineNum = cursor.line;
+            const line1 = cm.getLine(lineNum);
+            const line2 = cm.getLine(lineNum + 1);
+            cm.replaceRange(line2 + '\n' + line1 + '\n', new CodeMirror.Pos(lineNum, 0), CodeMirror.Pos(lineNum + 2, 0));
+            cursor.line++;
+            cm.setCursor(cursor);
+        },
+        'Alt-Up': (cm: any) => {
+            const cursor = cm.getCursor();
+            const lineNum = cursor.line;
+            const line1 = cm.getLine(lineNum);
+            const line2 = cm.getLine(lineNum - 1);
+            cm.replaceRange(line1 + '\n' + line2 + '\n', new CodeMirror.Pos(lineNum + 1, 0), CodeMirror.Pos(lineNum - 1, 0));
+            cursor.line--;
+            cm.setCursor(cursor);
+        },
+    }
 
     constructor(
         private downloadService: DownloadService,
