@@ -26,6 +26,14 @@ import 'codemirror/addon/search/match-highlighter';
 import 'codemirror/addon/search/matchesonscrollbar';
 import 'codemirror/addon/search/searchcursor';
 
+
+(window as any).randomFloat = (min: number = 0, max: number = 1): number => {
+    return Math.random() * (max - min) + min;
+}
+(window as any).randomInt = (min: number = 0, max: number = 100): number => {
+    return Math.round((window as any).randomFloat(min, max));
+}
+
 if (environment.production) {
   enableProdMode();
 }
