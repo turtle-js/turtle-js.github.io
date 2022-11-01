@@ -31,6 +31,9 @@ export class MainPage implements AfterViewInit {
         'Ctrl-S': (cm: any) => {
             this.onDownloadClick();
         },
+        'Shift-Alt-A': (cm: any) => {
+            cm.toggleComment();
+        },
         'Ctrl-Alt-R': (cm: any) => {
             this._runCodeTimeout();
         },
