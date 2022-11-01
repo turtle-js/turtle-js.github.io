@@ -9,9 +9,30 @@
 .logo-container {
     display: flex;
     align-items: center;
+    gap: 1rem;
+    text-decoration: none;
 
     img {
         height: 75%;
+    }
+    .name-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .name {
+            font-size: 110%;
+            color: var(--text-e);
+            transition: color 0.2s var(--timing-func);
+        }
+        .version {
+            font-size: 80%;
+            color: var(--text-s);
+        }
+    }
+    &:hover .name-container .name,
+    &:focus .name-container .name {
+        color: var(--text-he);
     }
 }
 .color-theme {
