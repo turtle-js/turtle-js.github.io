@@ -83,13 +83,13 @@ export class MainPage implements AfterViewInit {
                 disableWrapping: true,
             }
         );
-        this.turtleService.expose(window);
+        this.turtleService.turtle.expose(window);
 
         this._runCodeTimeout();
         this._wasViewInit = true;
     }
     private _runCodeTimeout() {
-        this.turtleService.reset();
+        this.turtleService.turtle.reset();
         this.isRunning = true;
         //this is for multithreading purposes
         setTimeout(() => {
@@ -107,7 +107,7 @@ export class MainPage implements AfterViewInit {
     }
     onCanvasResize = debounce(() => {
         if (!this._wasViewInit) return;
-        this.turtleService.reset();
+        this.turtleService.turtle.reset();
         this._runCode();
     }, 250);
     private _saveCodemirrorToLS = debounce(() => {
