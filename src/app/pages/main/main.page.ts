@@ -30,7 +30,7 @@ export class MainPage implements AfterViewInit {
             cm.replaceSelection(spaces);
         },
         'Ctrl-S': (cm: any) => {
-            this.onDownloadClick();
+            // Do nothing. Just stop the default action.
         },
         'Shift-Alt-A': (cm: any) => {
             cm.toggleComment();
