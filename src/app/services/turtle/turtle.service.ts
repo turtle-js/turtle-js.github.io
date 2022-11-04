@@ -36,6 +36,6 @@ drawShape(12, steps)
         this.turtle = new Turtle(ctx, turtleOptions);
     }
     redrawCanvas() {
-        this.turtle.draw();
+        this.turtle.drawTurtle();
     }
 }
