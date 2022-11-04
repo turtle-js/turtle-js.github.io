@@ -5,6 +5,7 @@ import { DownloadService } from './../../services/download/download.service';
 import { LocalStorageService } from './../../services/local-storage/local-storage.service';
 import { ThemeService } from './../../services/theme/theme.service';
 import * as CodeMirror from 'codemirror';
+import { debounce } from './../../scripts/util';
 
 @Component({
     templateUrl: './main.page.html',
@@ -138,12 +139,4 @@ export class MainPage implements AfterViewInit {
 
 ${this.codemirror.trimStart()}`;
     }
-}
-
-function debounce(func: (e?: Event) => unknown, delay: number = 100) {
-    let timer: any;
-    return function (event?: Event) {
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(func, delay, event);
-    };
 }
