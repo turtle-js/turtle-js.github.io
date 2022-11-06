@@ -2,6 +2,27 @@
     class="canvas-container"
     #host
     (window:resize)="onResize()"
+    [ngClass]="{fullscreen}"
 >
+    <div class="toolbar-container">
+        <span class="dimensions"> {{ width }}&VeryThinSpace;×&VeryThinSpace;{{ height }} px</span>
+        <div class="button-container">
+            <button class="button visibility-button" title="Toggle turtle visibility" (click)="toggleVisibility()">
+                <mat-icon *ngIf="visibility">visibility</mat-icon>
+                <mat-icon *ngIf="!visibility">visibility_off</mat-icon>
+            </button>
+            <button class="button grid-button" title="Toggle grid size" (click)="changeGridSize()">
+                <mat-icon *ngIf="(gridSize | async) == 0">grid_off</mat-icon>
+                <mat-icon *ngIf="(gridSize | async) == 10">grid_on</mat-icon>
+                <mat-icon *ngIf="(gridSize | async) == 25">grid_on</mat-icon>
+                <mat-icon *ngIf="(gridSize | async) == 50">grid_on</mat-icon>
+                <span class="grid-size">{{ (gridSize | async) ? (gridSize | async) + ' px' : 'Off' }}</span>
+            </button>
+            <button class="button fullscreen-button" title="Toggle fullscreen view" (click)="toggleFullscreen()">
+                <mat-icon *ngIf="fullscreen">fullscreen_exit</mat-icon>
+                <mat-icon *ngIf="!fullscreen">fullscreen</mat-icon>
+            </button>
+        </div>
+    </div>
     <canvas #canvas></canvas>
 </div>

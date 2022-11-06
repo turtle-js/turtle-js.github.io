@@ -1,11 +1,9 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { TurtleService } from 'src/app/services/turtle/turtle.service';
-import { TurtleCanvasComponent } from 'src/app/components/turtle-canvas/turtle-canvas.component';
-import { DownloadService } from './../../services/download/download.service';
-import { LocalStorageService } from './../../services/local-storage/local-storage.service';
-import { ThemeService } from './../../services/theme/theme.service';
 import * as CodeMirror from 'codemirror';
+import { TurtleCanvasComponent } from 'src/app/components/turtle-canvas/turtle-canvas.component';
+import { TurtleService } from 'src/app/services/turtle/turtle.service';
 import { debounce } from './../../scripts/util';
+import { ThemeService } from './../../services/theme/theme.service';
 
 @Component({
     templateUrl: './main.page.html',
@@ -14,15 +12,10 @@ import { debounce } from './../../scripts/util';
 export class MainPage implements AfterViewInit {
     @ViewChild(TurtleCanvasComponent) canvas!: TurtleCanvasComponent;
 
-    turtleService!: TurtleService;
-
     theme = this.themeService.simpleTheme;
-    codemirror: string = TurtleService.getCodeToLoad();
+    currentCode = this.turtleService.currentCode;
 
-    isRunning: boolean = true;
-
-    savingText: string = '';
-    private _savingTimeout?: NodeJS.Timeout;
+    isRunning = this.turtleService.isCodeRunning;
 
     readonly extraKeysMap = {
         'Tab': (cm: any) => {
@@ -36,7 +29,7 @@ export class MainPage implements AfterViewInit {
             cm.toggleComment();
         },
         'Ctrl-Alt-R': (cm: any) => {
-            this._runCodeTimeout();
+            this.turtleService.runCodeTimeout();
         },
         'Alt-B': (cm: any) => {
             const line = cm.getLine(cm.getCursor().line);
@@ -63,14 +56,13 @@ export class MainPage implements AfterViewInit {
     }
 
     constructor(
-        private downloadService: DownloadService,
-        private lss: LocalStorageService,
+        private turtleService: TurtleService,
         private themeService: ThemeService,
     ) {}
 
     private _wasViewInit = false;
     ngAfterViewInit(): void {
-        this.turtleService = new TurtleService(
+        this.turtleService.create(
             this.canvas
                 .canvasEl
                 .nativeElement
@@ -86,57 +78,19 @@ export class MainPage implements AfterViewInit {
         );
         this.turtleService.turtle.expose(window);
 
-        this._runCodeTimeout();
         this._wasViewInit = true;
-    }
-    private _runCodeTimeout() {
-        this.turtleService.turtle.reset();
-        this.isRunning = true;
-        //this is for multithreading purposes
-        setTimeout(() => {
-            this._runCode();
-            this.isRunning = false;
-        }, 0);
-    }
-    private _runCode() {
-        try {
-            eval(this.codemirror);
-        } catch (err: any) {
-            const error = err as Error;
-            console.error(error.toString());
-        }
     }
     onCanvasResize = debounce(() => {
         if (!this._wasViewInit) return;
-        this.turtleService.turtle.reset();
-        this._runCode();
+        this.turtleService.resetCanvas();
     }, 250);
-    private _saveCodemirrorToLS = debounce(() => {
-        this.lss.save('turtle-codemirror', this.codemirror);
-        this.savingText = 'Saved!';
-        this._savingTimeout = setTimeout(() => {
-            this.savingText = '';
-        }, 3000);
-    }, 500);
     onCodemirrorChange(value: string) {
-        this.codemirror = value;
-        this.savingText = 'Saving...';
-        clearTimeout(this._savingTimeout);
-        this._saveCodemirrorToLS();
+        this.turtleService.setCode(value);
     }
     onRunClick() {
-        if (this.isRunning) return;
-        this._runCodeTimeout();
+        this.turtleService.runCodeTimeout();
     }
     onDownloadClick() {
-        this.downloadService.download(this._getCodeWithWatermark(), 'turtle code.js');
-    }
-    private _getCodeWithWatermark() {
-        return `/*
- * Edited using TurtleJS
- * https://turtle-js.github.io
- */
-
-${this.codemirror.trimStart()}`;
+        this.turtleService.downloadCode();
     }
 }

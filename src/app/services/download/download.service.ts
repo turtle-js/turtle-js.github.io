@@ -17,4 +17,8 @@ export class DownloadService {
             window.URL.revokeObjectURL(url);
         }, 0);
     }
+    downloadWithWM(code: string, filename: string) {
+        const codeWithWM = `/*\n * Edited using TurtleJS\n * https://turtle-js.github.io\n */\n\n${code.trimStart()}`;
+        this.download(codeWithWM, filename);
+    }
 }

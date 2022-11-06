@@ -3,11 +3,12 @@
         <div class="panel-toolbar">
             <div class="button-container">
                 <button
-                    (click)="onRunClick()"
                     class="run-button"
-                    [disabled]="isRunning"
+                    [disabled]="isRunning | async"
+                    (click)="onRunClick()"
                 >
-                    <mat-icon>{{ isRunning ? 'more_horiz' : 'play_arrow' }}</mat-icon>
+                    <mat-icon *ngIf="isRunning | async">more_horiz</mat-icon>
+                    <mat-icon *ngIf="!(isRunning | async)">play_arrow</mat-icon>
                     <span>Run</span>
                 </button>
                 <button (click)="onDownloadClick()" class="download-button">
@@ -15,10 +16,9 @@
                     <span>Download</span>
                 </button>
             </div>
-            <span class="saving-indicator">{{ savingText }}</span>
         </div>
         <tjs-codemirror
-            [value]="codemirror"
+            [value]="(currentCode | async) ?? ''"
             [options]="{
                 mode: 'javascript',
                 theme: (theme | async) + 'plus',
@@ -40,6 +40,6 @@
         ></tjs-codemirror>
     </div>
     <div class="panel2">
-        <tjs-turtle-canvas (body:resize)="onCanvasResize()"></tjs-turtle-canvas>
+        <tjs-turtle-canvas (resize)="onCanvasResize()"></tjs-turtle-canvas>
     </div>
 </div>
