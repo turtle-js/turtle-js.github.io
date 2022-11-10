@@ -9,7 +9,8 @@ import { TurtleService } from 'src/app/services/turtle/turtle.service';
 })
 export class TurtleCanvasComponent implements AfterViewInit {
     @ViewChild('host') hostEl!: ElementRef;
-    @ViewChild('canvas') canvasEl!: ElementRef;
+    @ViewChild('turtleCanvas') turtleCanvasEl!: ElementRef;
+    @ViewChild('gridCanvas') gridCanvasEl!: ElementRef;
 
     @Output() resize = new EventEmitter();
 
@@ -25,22 +26,25 @@ export class TurtleCanvasComponent implements AfterViewInit {
     ) {}
 
     private readonly _resizeCanvas = () => {
-        const canvasEl = (this.canvasEl.nativeElement as HTMLCanvasElement);
-        canvasEl.width = this.width;
-        canvasEl.height = this.height;
+        const turtleCanvasEl = (this.turtleCanvasEl.nativeElement as HTMLCanvasElement);
+        turtleCanvasEl.width = window.innerWidth;
+        turtleCanvasEl.height = window.innerHeight;
+        const gridCanvasEl = (this.gridCanvasEl.nativeElement as HTMLCanvasElement);
+        gridCanvasEl.width = window.innerWidth;
+        gridCanvasEl.height = window.innerHeight;
         this.resize.emit();
     }
     private _resizeCanvasDebounced = debounce(this._resizeCanvas, 250);
     private _getHostElRect(): DOMRect {
         return (this.hostEl.nativeElement as HTMLElement).getBoundingClientRect();
     }
-    private _updateCanvasDims() {
+    private _updateCanvasViewDims() {
         const { width, height } = this._getHostElRect();
         this.width = Math.round(width);
         this.height = Math.round(height);
     }
     onResize() {
-        this._updateCanvasDims();
+        this._updateCanvasViewDims();
         this._resizeCanvasDebounced();
     }
 
@@ -48,7 +52,7 @@ export class TurtleCanvasComponent implements AfterViewInit {
         //timeout to prevent NG0100 error
         //https://angular.io/errors/NG0100
         setTimeout(() => {
-            this._updateCanvasDims();
+            this._updateCanvasViewDims();
             this._resizeCanvas();
         }, 0);
     }
@@ -57,8 +61,7 @@ export class TurtleCanvasComponent implements AfterViewInit {
         this.fullscreen = !this.fullscreen;
         //timeout to schedule the execution to after the view updates
         setTimeout(() => {
-            this._updateCanvasDims();
-            this._resizeCanvas();
+            this._updateCanvasViewDims();
         }, 0);
     }
     changeGridSize() {

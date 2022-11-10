@@ -64,7 +64,13 @@ export class MainPage implements AfterViewInit {
     ngAfterViewInit(): void {
         this.turtleService.create(
             this.canvas
-                .canvasEl
+                .turtleCanvasEl
+                .nativeElement
+                .getContext('2d', {
+                    willReadFrequently: true,
+                }),
+            this.canvas
+                .gridCanvasEl
                 .nativeElement
                 .getContext('2d', {
                     willReadFrequently: true,

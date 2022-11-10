@@ -3,6 +3,7 @@
     height: 100%;
     position: relative;
     background: var(--bg);
+    overflow: hidden;
 }
 .toolbar-container {
     position: absolute;
@@ -11,6 +12,7 @@
     right: 0;
     display: flex;
     justify-content: space-between;
+    z-index: 1;
 
     .dimensions {
         padding: 0.5em;
@@ -70,6 +72,12 @@
             min-width: 5ch;
         }
     }
+}
+canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .fullscreen {
     position: fixed;

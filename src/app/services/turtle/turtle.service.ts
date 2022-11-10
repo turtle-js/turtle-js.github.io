@@ -36,6 +36,7 @@ drawShape(12, steps)
     }
 
     turtle!: Turtle;
+    gridTurtle!: Turtle;
     private _gridSize: GridSize = (this.lss.loadNumber('turtle-grid-size') ?? 0) as GridSize;
     private _gridSizeSubject = new BehaviorSubject(this._gridSize);
     public gridSize = this._gridSizeSubject.asObservable();
@@ -59,9 +60,11 @@ drawShape(12, steps)
     
     create(
         ctx: CanvasRenderingContext2D,
+        gridCtx: CanvasRenderingContext2D,
         turtleOptions?: TurtleOptions
     ) {
         this.turtle = new Turtle(ctx, turtleOptions);
+        this.gridTurtle = new Turtle(gridCtx, turtleOptions);
     }
 
     setCode(code: string) {
@@ -85,7 +88,7 @@ drawShape(12, steps)
         }
         this._gridSizeSubject.next(this._gridSize);
         this.lss.save('turtle-grid-size', this._gridSize);
-        this.resetCanvas();
+        this._drawCorrectGrid();
     }
     changeDrawingSpeed(): void {
         switch (this._drawingSpeed) {
@@ -107,13 +110,14 @@ drawShape(12, steps)
         this.lss.save('turtle-drawing-speed', this._drawingSpeed);
     }
     private _drawCorrectGrid(): void {
-        this.turtle.instantReset();
+        this.gridTurtle.instantReset();
         if (!this._gridSize) return;
-        this.turtle.drawGrid(this._gridSize);
+        this.gridTurtle.drawGrid(this._gridSize);
     }
 
     resetCanvas(): void {
         this._drawCorrectGrid();
+        this.turtle.instantReset();
         this.turtle.setSpeed(this._drawingSpeed);
     }
     runCodeTimeout(): void {
