@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Turtle, TurtleOptions, ColorResolvable } from 'simple-turtle';
+import { Turtle, TurtleOptions, ColorResolvable, TurtleStep } from 'simple-turtle';
 import { LocalStorageService } from './../local-storage/local-storage.service';
 import { BehaviorSubject } from 'rxjs';
-import { debounce } from './../../scripts/util';
 import { DownloadService } from './../download/download.service';
+
+type GridSize = 0 | 10 | 25 | 50;
+type DrawingSpeed = 1 | 50 | 200 | 500;
 
 @Injectable({
     providedIn: 'root'
@@ -28,23 +30,21 @@ drawShape(10, steps)
 drawShape(12, steps)
 `; 
 
-    //LS = LocalStorage
-    getCodeToLoad(): string {
-        const LS = new LocalStorageService();
-        const codeFromLS = LS.loadString('turtle-codemirror');
+    private _getCodeToLoad(): string {
+        const codeFromLS = this.lss.loadString('turtle-codemirror');
         return codeFromLS || TurtleService._defaultCode;
     }
 
     turtle!: Turtle;
-    private _gridSize: 0 | 10 | 25 | 50 = 0;
+    private _gridSize: GridSize = (this.lss.loadNumber('turtle-grid-size') ?? 0) as GridSize;
     private _gridSizeSubject = new BehaviorSubject(this._gridSize);
     public gridSize = this._gridSizeSubject.asObservable();
 
-    private _drawingSpeed: 1 = 1; //TODO: add more speeds
+    private _drawingSpeed: DrawingSpeed = (this.lss.loadNumber('turtle-drawing-speed') ?? 1) as DrawingSpeed;
     private _drawingSpeedSubject = new BehaviorSubject(this._drawingSpeed);
     public drawingSpeed = this._drawingSpeedSubject.asObservable();
 
-    private _currentCode: string = this.getCodeToLoad();
+    private _currentCode: string = this._getCodeToLoad();
     private _currentCodeSubject = new BehaviorSubject(this._currentCode);
     public currentCode = this._currentCodeSubject.asObservable();
     
@@ -84,22 +84,37 @@ drawShape(12, steps)
                 break;
         }
         this._gridSizeSubject.next(this._gridSize);
+        this.lss.save('turtle-grid-size', this._gridSize);
         this.resetCanvas();
     }
     changeDrawingSpeed(): void {
-        //TODO
+        switch (this._drawingSpeed) {
+            case 1:
+                this._drawingSpeed = 50;
+                break;
+            case 50:
+                this._drawingSpeed = 200;
+                break;
+            case 200:
+                this._drawingSpeed = 500;
+                break;
+            case 500:
+                this._drawingSpeed = 1;
+                break;
+        }
+        this._drawingSpeedSubject.next(this._drawingSpeed);
+        this.turtle.setSpeed(this._drawingSpeed);
+        this.lss.save('turtle-drawing-speed', this._drawingSpeed);
     }
-    drawCorrectGrid(): void {
+    private _drawCorrectGrid(): void {
+        this.turtle.instantReset();
         if (!this._gridSize) return;
         this.turtle.drawGrid(this._gridSize);
     }
 
     resetCanvas(): void {
-        this.turtle.reset();
+        this._drawCorrectGrid();
         this.turtle.setSpeed(this._drawingSpeed);
-        this.turtle.saveImageData();
-        this.drawCorrectGrid();
-        this.turtle.drawTurtle();
     }
     runCodeTimeout(): void {
         if (this._isCodeRunning) return;
