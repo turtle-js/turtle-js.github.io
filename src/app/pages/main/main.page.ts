@@ -72,7 +72,6 @@ export class MainPage implements AfterViewInit {
             {
                 defaultColor: 'white',
                 autoDraw: true,
-                turtleSizeModifier: 3,
                 disableWrapping: true,
             }
         );
