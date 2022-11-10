@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     position: relative;
+    background: var(--bg);
 }
 .toolbar-container {
     position: absolute;
@@ -11,6 +12,11 @@
     display: flex;
     justify-content: space-between;
 
+    .dimensions {
+        padding: 0.5em;
+        font-size: 70%;
+        text-shadow: 0 0 3px var(--bg);
+    }
     .button-container {
         padding: 0.6rem;
         display: flex;
@@ -18,6 +24,7 @@
 
         .button {
             background: var(--bg);
+            position: relative;
             border: 1px solid var(--acc2);
             border-radius: 4px;
             color: var(--text-e);
@@ -25,33 +32,50 @@
             display: flex;
             align-items: center;
             padding: 0.2rem;
-            transition: background-color 0.2s var(--timing-func);
+            overflow: hidden;
 
+            * {
+                z-index: 1;
+            }
             mat-icon {
                 font-size: 200%;
                 font-weight: 200;
                 color: var(--text-he);
             }
-
-            &:hover,
-            &:focus {
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                background: var(--bg);
+                transition: background-color 0.2s var(--timing-func);
+            }
+            &:hover::before,
+            &:focus::before {
                 background: var(--hover);
             }
 
-            &:active {
+            &:active::before {
                 background: var(--focus);
             }
         }
-        .grid-button {
+        .grid-button, .speed-button {
             padding: 0.2rem 0.6rem 0.2rem 0.2rem;
             position: relative;
-
-            .grid-size {
-                min-width: 5ch;
-            }
+        }
+        .grid-button > span,
+        .speed-button > span {
+            min-width: 5ch;
         }
     }
 }
 .fullscreen {
-
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
 }

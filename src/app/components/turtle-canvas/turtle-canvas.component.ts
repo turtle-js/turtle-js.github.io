@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, Input, Output, EventEmitter, AfterViewChecked } from '@angular/core';
 import { debounce } from './../../scripts/util';
 import { TurtleService } from 'src/app/services/turtle/turtle.service';
 
@@ -16,41 +16,55 @@ export class TurtleCanvasComponent implements AfterViewInit {
     width: number = 0;
     height: number = 0;
 
-    visibility: boolean = true;
     fullscreen: boolean = false;
     gridSize = this.turtleService.gridSize;
+    drawingSpeed = this.turtleService.drawingSpeed;
 
     constructor(
         private turtleService: TurtleService,
     ) {}
 
-    private readonly _onResizeFn = () => {
-        const { width, height } = this._getHostElRect();
-        this.width = Math.round(width);
-        this.height = Math.round(height);
+    private readonly _resizeCanvas = () => {
         const canvasEl = (this.canvasEl.nativeElement as HTMLCanvasElement);
-        canvasEl.width = width;
-        canvasEl.height = height;
+        canvasEl.width = this.width;
+        canvasEl.height = this.height;
         this.resize.emit();
     }
-    onResize = debounce(this._onResizeFn, 250);
+    private _resizeCanvasDebounced = debounce(this._resizeCanvas, 250);
     private _getHostElRect(): DOMRect {
         return (this.hostEl.nativeElement as HTMLElement).getBoundingClientRect();
     }
+    private _updateCanvasDims() {
+        const { width, height } = this._getHostElRect();
+        this.width = Math.round(width);
+        this.height = Math.round(height);
+    }
+    onResize() {
+        this._updateCanvasDims();
+        this._resizeCanvasDebounced();
+    }
 
     ngAfterViewInit(): void {
+        //timeout to prevent NG0100 error
+        //https://angular.io/errors/NG0100
         setTimeout(() => {
-            this._onResizeFn();
+            this._updateCanvasDims();
+            this._resizeCanvas();
         }, 0);
     }
 
-    toggleVisibility() {
-        this.visibility = !this.visibility;
-    }
     toggleFullscreen() {
         this.fullscreen = !this.fullscreen;
+        //timeout to schedule the execution to after the view updates
+        setTimeout(() => {
+            this._updateCanvasDims();
+            this._resizeCanvas();
+        }, 0);
     }
     changeGridSize() {
         this.turtleService.changeGridSize();
+    }
+    changeDrawingSpeed() {
+        this.turtleService.changeDrawingSpeed();
     }
 }
