@@ -16,12 +16,11 @@ export class LocalStorageService {
      * * If data is a number, it is parsed using `Number()` and returned.
      * * If data is a boolean or a string, it is returned unmodified.
      */
-    public load(item: string): null | object | number | boolean | string {
+    public loadAny(item: string): null | object | number | boolean | string {
         let data = localStorage.getItem(item);
         if (!data || data == 'null') return null;
         if (data.trim().match(/^[\[\{]/)) return JSON.parse(data);
         if (Number(data)) return Number(data);
-        if (data.match(/^(?:true|false)$/)) return data == 'true';
         return data;
     }
     
@@ -36,6 +35,32 @@ export class LocalStorageService {
         let data = localStorage.getItem(item);
         if (!data || data == 'null') return null;
         return data;
+    }
+
+    /**
+     * Loads some data from user's local storage.
+     * @param item the name of the key to load
+     * @returns the data saved in the local storage.
+     * * If valid data is found, it is returned as `boolean`.
+     * * If no data or invalid data is found, `null` is returned.
+     */
+    public loadBool(item: string): null | boolean {
+        let data = localStorage.getItem(item);
+        if (data?.match(/^(?:true|false)$/)) return data == 'true';
+        return null;
+    }
+
+    /**
+     * Loads some data from user's local storage.
+     * @param item the name of the key to load
+     * @returns the data saved in the local storage.
+     * * If valid data is found, it is returned as `number`.
+     * * If no data or invalid data is found, `null` is returned.
+     */
+    public loadNumber(item: string): null | number {
+        let data = localStorage.getItem(item);
+        if (Number(data)) return Number(data);
+        return null;
     }
 
     /**
