@@ -45,6 +45,10 @@ drawShape(12, steps)
     private _drawingSpeedSubject = new BehaviorSubject(this._drawingSpeed);
     public drawingSpeed = this._drawingSpeedSubject.asObservable();
 
+    private _visibility: boolean = this.lss.loadBool('turtle-visibility') ?? true;
+    private _visibilitySubject = new BehaviorSubject(this._visibility);
+    public visibility = this._visibilitySubject.asObservable();
+
     private _currentCode: string = this._getCodeToLoad();
     private _currentCodeSubject = new BehaviorSubject(this._currentCode);
     public currentCode = this._currentCodeSubject.asObservable();
@@ -108,6 +112,15 @@ drawShape(12, steps)
         this._drawingSpeedSubject.next(this._drawingSpeed);
         this.turtle.setSpeed(this._drawingSpeed);
         this.lss.save('turtle-drawing-speed', this._drawingSpeed);
+    }
+    toggleVisibility() {
+        this._visibility = !this._visibility;
+        this._visibilitySubject.next(this._visibility);
+        if (this._visibility) {
+            this.turtle.instantShow();
+            return;
+        }
+        this.turtle.instantHide();
     }
     private _drawCorrectGrid(): void {
         this.gridTurtle.instantReset();

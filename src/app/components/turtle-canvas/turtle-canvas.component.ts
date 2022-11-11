@@ -20,6 +20,7 @@ export class TurtleCanvasComponent implements AfterViewInit {
     fullscreen: boolean = false;
     gridSize = this.turtleService.gridSize;
     drawingSpeed = this.turtleService.drawingSpeed;
+    visibility = this.turtleService.visibility;
 
     constructor(
         private turtleService: TurtleService,
@@ -69,5 +70,8 @@ export class TurtleCanvasComponent implements AfterViewInit {
     }
     changeDrawingSpeed() {
         this.turtleService.changeDrawingSpeed();
+    }
+    toggleVisibility() {
+        this.turtleService.toggleVisibility();
     }
 }

@@ -79,6 +79,7 @@ export class MainPage implements AfterViewInit {
                 defaultColor: 'white',
                 autoDraw: true,
                 disableWrapping: true,
+                drawTurtleOnInit: false,
             }
         );
         this.turtleService.turtle.expose(window);

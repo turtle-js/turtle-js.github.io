@@ -18,6 +18,10 @@
                 <mat-icon *ngIf="(gridSize | async) != 0">grid_on</mat-icon>
                 <span>{{ (gridSize | async) ? (gridSize | async) + ' px' : 'Off' }}</span>
             </button>
+            <button class="button visibility-button" title="Toggle turtle visibility" (click)="toggleVisibility()">
+                <mat-icon *ngIf="visibility | async">visibility</mat-icon>
+                <mat-icon *ngIf="!(visibility | async)">visibility_off</mat-icon>
+            </button>
             <button class="button fullscreen-button" title="Toggle fullscreen view" (click)="toggleFullscreen()">
                 <mat-icon *ngIf="fullscreen">fullscreen_exit</mat-icon>
                 <mat-icon *ngIf="!fullscreen">fullscreen</mat-icon>
