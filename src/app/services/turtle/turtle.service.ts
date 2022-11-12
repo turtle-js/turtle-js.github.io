@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Turtle, TurtleOptions, ColorResolvable, TurtleStep } from 'simple-turtle';
-import { LocalStorageService } from './../local-storage/local-storage.service';
 import { BehaviorSubject } from 'rxjs';
+import { Turtle, TurtleOptions } from 'simple-turtle';
 import { DownloadService } from './../download/download.service';
+import { LocalStorageService } from './../local-storage/local-storage.service';
+import { CodeAnalyticsService } from './../code-analytics/code-analytics.service';
 
 type GridSize = 0 | 10 | 25 | 50;
 type DrawingSpeed = 1 | 50 | 200 | 500;
@@ -56,6 +57,7 @@ drawShape(12, steps)
     constructor(
         private lss: LocalStorageService,
         private downloadService: DownloadService,
+        private codeAnalytics: CodeAnalyticsService,
     ) { }
     
     create(
